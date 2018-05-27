@@ -56,6 +56,9 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
         self.manualLocationText.setText(directory)
 
     def set_location(self, parent):
+        if self.location == '':
+            self.set_error('WARNING: no directory entered')
+            return
         historyoperations.add_to_history_file(self.location)
         os.system('defaults write com.apple.screencapture location ' + self.location)
         os.system('killall SystemUIServer')
