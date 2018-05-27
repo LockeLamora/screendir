@@ -27,7 +27,8 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 
         self.historyComboBox.addItem('Choose previous location...')
         for historyitem in historyitems:
-            self.historyComboBox.addItem(historyitem)
+            if historyitem.rstrip():
+                self.historyComboBox.addItem(historyitem)
 
     def set_error(self, text):
         self.errorTextLabel.setText(text)
