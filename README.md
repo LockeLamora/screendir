@@ -7,3 +7,5 @@ History can be accessed from the dropdown.
 Absolute paths can be manually entered in the text field.
 
 Clicking the '...' button will allow you to navigate to the directory of your choice.
+
+Clicking "Set" will apply your changes
