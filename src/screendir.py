@@ -47,13 +47,15 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
         self.set_current_directory(self, selection)
 
     def browse_for_location(self, parent):
-        directory = str(QFileDialog.getExistingDirectory(self, "Select Directory"))   
+        directory = str(QFileDialog.getExistingDirectory(self, "Select Directory"))  
         self.set_current_directory(self, directory)
 
     def set_current_directory(self, parent, directory):
-        if os.path.isdir(directory) == False:
+        if directory is None or directory == '':
+            self.set_error('WARNING: No Path selected yet')
+        elif os.path.isdir(directory) == False:
             self.set_error('WARNING: Path does not exist')
-        if os.access(directory, os.W_OK) == False:
+        elif os.access(directory, os.W_OK) == False:
             self.set_error('WARNING: Chosen directory is read-only')
         else:
             self.set_error('')
