@@ -1,6 +1,6 @@
 # ScreenshotDirectory
 
-Running screendir will bring up a GUI to allow you to set the current location for saving OSX screenshots.
+Extract dist/screendir.zip to your Applications directory or run python screendir.py to bring up a GUI which will allow you to set the current location for saving OSX screenshots.
 
 History can be accessed from the dropdown.
 
