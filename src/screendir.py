@@ -19,7 +19,10 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
         self.set_initial_directory(self)
 
     def set_initial_directory(self, parent):
-        file = subprocess.check_output('defaults read com.apple.screencapture location', shell=True)
+        try:
+            file = subprocess.check_output('defaults read com.apple.screencapture location', shell=True)
+        except:
+            file = os.path.expanduser("~/Desktop")
         self.set_current_directory(self, file.rstrip())
 
     def process_manual_path(self):
