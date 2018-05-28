@@ -1,4 +1,4 @@
-import sys, historyoperations, os
+import sys, historyoperations, os, subprocess
 from PyQt4 import QtCore, QtGui, uic
 from PyQt4.QtGui import QFileDialog 
 
@@ -16,6 +16,11 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
         self.historyComboBox.currentIndexChanged.connect(self.process_history_combobox)
         self.clearHistoryButton.clicked.connect(self.clear_history)
         self.manualLocationText.editingFinished.connect(self.process_manual_path)
+        self.set_initial_directory(self)
+
+    def set_initial_directory(self, parent):
+        file = subprocess.check_output('defaults read com.apple.screencapture location', shell=True)
+        self.set_current_directory(self, file.rstrip())
 
     def process_manual_path(self):
         directory = self.manualLocationText.text()
@@ -63,6 +68,7 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
         os.system('defaults write com.apple.screencapture location ' + self.location)
         os.system('killall SystemUIServer')
         self.populate_history_combobox(self)
+        self.set_initial_directory(self)
         
     def clear_history(self, parent):
         historyoperations.clear_history()
