@@ -25,6 +25,7 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
             file = os.path.expanduser("~/Desktop")
         self.set_current_directory(self, file.rstrip())
         historyoperations.add_to_history_file(self.location)
+        self.populate_history_combobox
 
     def process_manual_path(self):
         directory = self.manualLocationText.text()
