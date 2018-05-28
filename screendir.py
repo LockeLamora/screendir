@@ -53,7 +53,7 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
         self.set_current_directory(self, selection)
 
     def browse_for_location(self, parent):
-        directory = str(QFileDialog.getExistingDirectory(self, "Select Directory"))  
+        directory = str(QFileDialog.getExistingDirectory(self, "Select Directory", self.location))  
         self.set_current_directory(self, directory)
 
     def set_current_directory(self, parent, directory):
